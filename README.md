@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # cse210-final
 
 # Shooter
@@ -19,3 +20,19 @@ Shooter is played according to the following rules:
 -   Renzo Cardoza
 -   Valentina Bass
 -   Pablo Santos
+=======
+# Space Invaders
+Update the Readme file with information about your game and your team members.
+
+## Rules
+-
+-
+-
+-
+
+## Team Members
+- Valentina Bass
+- Pablo Santos
+- Renzo Cardoza
+
+>>>>>>> dbc21232e06a3ae0f18a02dca6b428ac1494807a
