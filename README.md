@@ -1,11 +1,11 @@
 <<<<<<< HEAD
 # cse210-final
 
-# Shooter
-Shooter is a game where the spaceship (the player) is attacked by enemies who throw objects to destroy it. The player's mission will be to defend himself by shooting lasers at objects to avoid losing lives and dying. So also for each object that the ship destroys it will receive points.
+# Space Invaders
+ Space Invaders is a game where the spaceship (the player) is attacked by enemies who throw objects to destroy it. The player's mission will be to defend himself by shooting lasers at objects to avoid losing lives and dying. So also for each object that the ship destroys it will receive points.
 
 ## Rules
-Shooter is played according to the following rules:
+Space Invaders is played according to the following rules:
 
 - The player can move left and right...
 - The player moves using the A and D keys.
@@ -20,19 +20,4 @@ Shooter is played according to the following rules:
 -   Renzo Cardoza
 -   Valentina Bass
 -   Pablo Santos
-=======
-# Space Invaders
-Update the Readme file with information about your game and your team members.
 
-## Rules
--
--
--
--
-
-## Team Members
-- Valentina Bass
-- Pablo Santos
-- Renzo Cardoza
-
->>>>>>> dbc21232e06a3ae0f18a02dca6b428ac1494807a
