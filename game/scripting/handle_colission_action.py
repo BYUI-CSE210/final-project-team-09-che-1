@@ -73,7 +73,7 @@ class HandleCollisionsAction(Action):
    
 
     def _handle_game_over(self, cast):
-        """Shows the 'game over' message and turns the players and trails white if the game is over.
+        """Shows the 'game over' and 'Try Again' message if the game is over or the player lose lives. 
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -87,7 +87,7 @@ class HandleCollisionsAction(Action):
 
             #get the lives
             lives = cast.get_actors("lives")
-            live    = lives[0].get_lives()
+            live = lives[0].get_lives()
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
