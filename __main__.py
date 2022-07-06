@@ -1,3 +1,8 @@
+import constants
+from game.shared.point import Point
+from game.shared.color import Color
+from game.casting.lives import Lives
+
 ##SPACE INVADERS
 
 # agregar el readme y crear las reglas del juego /VALE
