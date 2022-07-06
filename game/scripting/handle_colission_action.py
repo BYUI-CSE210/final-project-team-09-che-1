@@ -46,7 +46,7 @@ class HandleCollisionsAction(Action):
         shot = shots[0]
         player = cast.get_actors("player")
         player1 = shots[0]
-        enemies = cast.get_actors("enemies")
+        enemies = cast.get_actors("enemy")
         #red_enemies = enemies[0]
         #blue_enemies = enemies [1]
 
@@ -67,7 +67,7 @@ class HandleCollisionsAction(Action):
 
         #if the player collides with enemies
         for enemy in enemies:
-            if player.get_position().equals(enemies.get_position()):
+            if player.get_position().equals(enemy.get_position()):
                 self._is_game_over = True
                 #add points to the other player 
    
