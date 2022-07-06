@@ -41,7 +41,7 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
 
-        #get both players
+        #get player
         shots = cast.get_actors("shots")
         shot = shots[0]
         player = cast.get_actors("player")
@@ -55,7 +55,7 @@ class HandleCollisionsAction(Action):
         score_p1 = scores[0]
     
 
-        #if player one collides with player two trail
+        #if the shot collides with enemies
         for enemy in enemies:
             if shot.get_position().equals(enemy.get_position()):
                 if enemy.get_text() == "*":
@@ -65,7 +65,7 @@ class HandleCollisionsAction(Action):
                     score_p1.add_points(200)
               
 
-        #if player two collides with player one trail      
+        #if the player collides with enemies
         for enemy in enemies:
             if player.get_position().equals(enemies.get_position()):
                 self._is_game_over = True
@@ -80,7 +80,7 @@ class HandleCollisionsAction(Action):
         """
 
         if self._is_game_over:
-            #get the players
+            #get the player
             player = cast.get_actors("players")
             player1 = player[0]
             
