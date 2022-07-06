@@ -23,8 +23,10 @@ class DrawActorsAction(Action):
         """
 
         spacecraft = cast.get_first_actor("players")
+        enemy = cast.get_actors("enemies")
 
 
         self._video_service.clear_buffer()
         self._video_service.draw_actor(spacecraft)
+        self._video_service.draw_actors(enemy)
         self._video_service.flush_buffer()
