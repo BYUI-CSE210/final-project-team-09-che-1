@@ -46,7 +46,7 @@ class HandleCollisionsAction(Action):
         shot = shots[0]
         player = cast.get_actors("player")
         player1 = shots[0]
-        enemies = cast.get_actors("enemies")
+        enemies = cast.get_actors("enemy")
         #red_enemies = enemies[0]
         #blue_enemies = enemies [1]
 
@@ -67,13 +67,13 @@ class HandleCollisionsAction(Action):
 
         #if the player collides with enemies
         for enemy in enemies:
-            if player.get_position().equals(enemies.get_position()):
+            if player.get_position().equals(enemy.get_position()):
                 self._is_game_over = True
                 #add points to the other player 
    
 
     def _handle_game_over(self, cast):
-        """Shows the 'game over' message and turns the players and trails white if the game is over.
+        """Shows the 'game over' and 'Try Again' message if the game is over or the player lose lives. 
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -87,7 +87,7 @@ class HandleCollisionsAction(Action):
 
             #get the lives
             lives = cast.get_actors("lives")
-            live    = lives[0].get_lives()
+            live = lives[0].get_lives()
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
