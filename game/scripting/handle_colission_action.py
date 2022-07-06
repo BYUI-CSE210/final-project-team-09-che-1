@@ -7,8 +7,8 @@ class HandleCollisionsAction(Action):
     """
     An update action that handles interactions between the actors.
     
-    The responsibility of HandleCollisionsAction is to handle the situation when a player collides
-    with the other player's trail, and vice versa, or the game is over.
+    The responsibility of HandleCollisionsAction is to handle the situation when a player or laser collides
+    with the enemies vice versa, or the game is over.
 
     Attributes:
         is_game_over (boolean): Whether or not the game is over.
@@ -34,8 +34,8 @@ class HandleCollisionsAction(Action):
 
 
     def handle_player_collition(self, cast):
-        """Sets the game over flag if the player collides with the trail of the other player 
-        or with the head of the other player
+        """Modify lives and the score if the shots collides with the enemies 
+        or the enemies  collides with the player.
         
         Args:
             cast (Cast): The cast of Actors in the game.
