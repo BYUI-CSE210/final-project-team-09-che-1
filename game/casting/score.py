@@ -4,8 +4,8 @@ class Score(Actor):
     """
     A record of points made or lost. 
     
-    The responsibility of Score is to keep track of the points the player has earned by forcing 
-    a colission with the oponent.
+    The responsibility of Score is to keep track of the points the player has earned by defeating  
+    enemies using lasers.
     It contains methods for adding and getting points. Client should use get_text() to get a string 
     representation of the points earned.
 
@@ -23,7 +23,7 @@ class Score(Actor):
         self.add_points(0)
         
     def add_points(self, points):
-        """Adds the points to the total score for player 1
+        """Adds the points to the total score for the player
         
         Args:
             points (int): The points earned after a colission
