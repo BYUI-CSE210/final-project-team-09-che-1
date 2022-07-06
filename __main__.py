@@ -1,8 +1,43 @@
 import constants
+from game.services.keyboard_service import KeyboardService
+from game.services.video_service import VideoService
+from game.directing.director import Director
+from game.scripting.draw_actors_action import DrawActorsAction
+from game.scripting.draw_hud_action import DrawHUDAction
+from game.scripting.script import Script
 from game.shared.point import Point
 from game.shared.color import Color
 from game.casting.lives import Lives
+from game.casting.cast import Cast
+from game.casting.spacecraft import Spacecraft
 
+def main():
+
+    #create the space craft
+    spacecraft = Spacecraft()
+    x = int(constants.SCREEN_WIDTH / 2)
+    y = int(constants.SCREEN_HEIGHT * 0.75)  
+    spacecraft.set_position(Point(x, y))
+    spacecraft.set_text("#")
+    #Create the enemies
+
+    #Cast
+    cast = Cast()
+    cast.add_actor("players", spacecraft)
+
+    # start the game
+    keyboard_service = KeyboardService()
+    video_service = VideoService()
+
+    #create the script
+    script = Script()
+    script.add_action("output", DrawActorsAction(video_service))
+
+    director = Director(video_service)
+    director.start_game(cast, script)
+
+if __name__ == "__main__":
+    main()
 ##SPACE INVADERS
 
 # agregar el readme y crear las reglas del juego /VALE

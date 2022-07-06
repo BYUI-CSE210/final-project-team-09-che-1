@@ -22,6 +22,9 @@ class DrawActorsAction(Action):
             script (Script): The script of Actions in the game.
         """
 
+        spacecraft = cast.get_first_actor("players")
+
+
         self._video_service.clear_buffer()
-       
+        self._video_service.draw_actor(spacecraft)
         self._video_service.flush_buffer()
