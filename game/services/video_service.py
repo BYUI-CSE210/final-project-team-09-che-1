@@ -1,7 +1,6 @@
 import pyray
 import constants
 
-
 class VideoService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state 
     on the screen. 
@@ -76,16 +75,16 @@ class VideoService:
         Args:
             title (string): The title of the window.
         """
-        pyray.init_window(constants.MAX_X, constants.MAX_Y, constants.CAPTION)
+        pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.GAME_NAME)
         pyray.set_target_fps(constants.FRAME_RATE)
 
     def _draw_grid(self):
         """Draws a grid on the screen."""
-        for y in range(0, constants.MAX_Y, constants.CELL_SIZE):
-            pyray.draw_line(0, y, constants.MAX_X, y, pyray.GRAY)
+        for y in range(0, constants.SCREEN_HEIGHT, constants.CELL_SIZE):
+            pyray.draw_line(0, y, constants.SCREEN_WIDTH, y, pyray.GRAY)
             
-        for x in range(0, constants.MAX_X, constants.CELL_SIZE):
-            pyray.draw_line(x, 0, x, constants.MAX_Y, pyray.GRAY)
+        for x in range(0, constants.SCREEN_WIDTH, constants.CELL_SIZE):
+            pyray.draw_line(x, 0, x, constants.SCREEN_HEIGHT, pyray.GRAY)
     
     def _get_x_offset(self, text, font_size):
         width = pyray.measure_text(text, font_size)
