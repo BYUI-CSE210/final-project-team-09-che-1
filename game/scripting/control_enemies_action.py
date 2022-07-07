@@ -1,11 +1,9 @@
-import pyray
 import constants
-from game.casting.spacecraft import Spacecraft
 from game.scripting.action import Action
 from game.shared.point import Point
 #from game.scripting.handle_colission_action import HandleCollisionsAction
 
-class ControlSpacecraftAction(Action):
+class ControlEnemiesAction(Action):
     """
     An input action that controls the player 1 movements.
     
@@ -34,12 +32,12 @@ class ControlSpacecraftAction(Action):
         """
 
         # left
-        #if self._keyboard_service.is_key_down('a'):
-         #   self._direction = Point(-constants.CELL_SIZE, 0)
+        if self._keyboard_service.is_key_down('a'):
+            self._direction = Point(-constants.CELL_SIZE, 0)
         
         # right
-       # if self._keyboard_service.is_key_down('d'):
-          #  self._direction = Point(constants.CELL_SIZE, 0)
+        if self._keyboard_service.is_key_down('d'):
+            self._direction = Point(constants.CELL_SIZE, 0)
         
         # up
        # if self._keyboard_service.is_key_down('w'):
@@ -49,20 +47,10 @@ class ControlSpacecraftAction(Action):
        # if self._keyboard_service.is_key_down('s'):
          #   self._direction = Point(0, constants.CELL_SIZE)
 
-        dx = 0
-        dy = 0
-
-        if pyray.is_key_down(pyray.KEY_LEFT):
-            dx = -1
+    
         
-        if pyray.is_key_down(pyray.KEY_RIGHT):
-            dx = 1
-        
-        self._direction = Point(dx, dy)
-        self._direction = self._direction.scale(constants.CELL_SIZE)
-        spacecraft = cast.get_first_actor("players")
-        spacecraft.set_velocity(self._direction) 
-        
+        enemy = cast.get_actors("enemies")
+        enemy.set_velocity(self._direction)
         #spacecraft.turn_player(self._direction)
         #spacecraft.grow_trail()
         

@@ -1,12 +1,16 @@
 import constants
 import random
 from game.casting.enemy import Enemy
+from game.scripting.control_enemies_action import ControlEnemiesAction
+from game.scripting.control_spacecraft_action import ControlSpacecraftAction
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 from game.directing.director import Director
 from game.scripting.draw_actors_action import DrawActorsAction
 from game.scripting.draw_hud_action import DrawHUDAction
 from game.scripting.script import Script
+from game.scripting.move_actors_action import MoveActorsAction
+from game.scripting.handle_colission_action import HandleCollisionsAction
 from game.shared.point import Point
 from game.shared.color import Color
 from game.casting.lives import Lives
@@ -21,22 +25,24 @@ def main():
     #create the space craft
     spacecraft = Spacecraft()
     x = int(constants.SCREEN_WIDTH / 2)
-    y = int(constants.SCREEN_HEIGHT * 0.75)  
+    y = int(constants.SCREEN_HEIGHT * 0.85)  
     spacecraft.set_position(Point(x, y))
     spacecraft.set_text("#")
+    spacecraft.set_font_size(constants.CELL_SIZE * 2)
 
     cast.add_actor("players", spacecraft)
 
     #Create the enemies
     for n in range(constants.DEFAULT_ENEMIES):
         
-        text = "X"
+        text = random.choice(constants.ENEMIES)
         x = random.randint(1, constants.COLUMNS - 1)
         y = random.randint(1, 15)
         position = Point(x, y)
         position = position.scale(constants.CELL_SIZE)
         enemy = Enemy()
         enemy.set_position(position)
+        enemy.set_velocity(constants.ENEMIES_VELOCITY)
         enemy.set_text(text)
         enemy.set_color(constants.RED)
 
@@ -54,7 +60,12 @@ def main():
     #create the script
     script = Script()
     script.add_action("output", DrawActorsAction(video_service))
+    script.add_action("input", ControlSpacecraftAction(keyboard_service))
+    #script.add_action("input", ControlEnemiesAction(keyboard_service))
+    script.add_action("update", MoveActorsAction())
+    #script.add_action("update", HandleCollisionsAction())
 
+    
     director = Director(video_service)
     director.start_game(cast, script)
 
