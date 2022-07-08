@@ -59,13 +59,9 @@ def main():
         background.set_font_size(constants.CELL_SIZE)
 
         cast.add_actor("background", background)
-
-    #Create the ENEMIES 
-
-    for n in range(constants.DEFAULT_ENEMIES):
-        
+     
     #Create the enemies
-     for n in range(constants.DEFAULT_ENEMIES):    
+    for n in range(constants.DEFAULT_ENEMIES):    
 
         text = random.choice(constants.ENEMIES)
         x = random.randint(1, constants.COLUMNS - 1)
@@ -89,9 +85,6 @@ def main():
     
     laser.set_font_size(constants.CELL_SIZE)
     cast.add_actor("laser", laser)
-
-   
-    
 
 
     # start the game
