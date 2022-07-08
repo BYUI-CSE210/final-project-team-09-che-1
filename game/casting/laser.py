@@ -14,11 +14,12 @@ class Laser(Actor):
     def __init__(self):
         """construct a new instance of an artifact"""   
         super().__init__()
-        
+        self._color = constants.GREEN
+    
     
     def get_player(self):
-        """Return the Spacecraft"""
-        pass
+
+        return self.get_position()
         #Creating the spacecraft
      #   player = Actor()
      #   player.set_color(constants.GREEN)

@@ -15,7 +15,7 @@ class Spacecraft(Actor):
         """construct a new instance of an artifact"""   
         
         super().__init__()
-        self._color = constants.WHITE
+        self._color = constants.BLUE
     
     def get_player(self):
         """gets the player's position"""
