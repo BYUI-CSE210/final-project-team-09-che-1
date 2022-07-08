@@ -7,12 +7,12 @@ from game.shared.point import Point
 
 class ControlSpacecraftAction(Action):
     """
-    An input action that controls the player 1 movements.
+    An input action that controls the spacecraft's movement.
     
-    The responsibility of ControlActorsAction is to get the direction and move the player 1.
-
+    The responsibility of ControlActorsAction is to get the direction and move the spacecraft.
     Attributes:
         _keyboard_service (KeyboardService): An instance of KeyboardService.
+        _direction (Point): a point to direct the spacecraft
     """
 
     def __init__(self, keyboard_service):
@@ -27,45 +27,21 @@ class ControlSpacecraftAction(Action):
 
     def execute(self, cast, script):
         """Executes the control actors action.
-
         Args:
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
 
-        # left
-        #if self._keyboard_service.is_key_down('a'):
-         #   self._direction = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-       # if self._keyboard_service.is_key_down('d'):
-          #  self._direction = Point(constants.CELL_SIZE, 0)
-        
-        # up
-       # if self._keyboard_service.is_key_down('w'):
-         #   self._direction = Point(0, -constants.CELL_SIZE)
-        
-        # down
-       # if self._keyboard_service.is_key_down('s'):
-         #   self._direction = Point(0, constants.CELL_SIZE)
-
         dx = 0
         dy = 0
 
-        if pyray.is_key_down(pyray.KEY_LEFT):
+        if self._keyboard_service.is_key_down("a"):
             dx = -1
         
-        if pyray.is_key_down(pyray.KEY_RIGHT):
+        if self._keyboard_service.is_key_down("d"):
             dx = 1
         
         self._direction = Point(dx, dy)
         self._direction = self._direction.scale(constants.CELL_SIZE)
         spacecraft = cast.get_first_actor("players")
         spacecraft.set_velocity(self._direction) 
-        
-        #spacecraft.turn_player(self._direction)
-        #spacecraft.grow_trail()
-        
-       # score = cast.get_first_actor("scores")
-       # points = 1
-        #score.add_points(points)
