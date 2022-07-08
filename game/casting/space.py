@@ -13,7 +13,7 @@ class Space(Actor):
     """
     
     def __init__(self):
-        """construct a new instance of an artifact"""   
+        """construct a new instance of the space"""   
 
         super().__init__()
         self._text = random.choice(constants.BACKGROUND)
