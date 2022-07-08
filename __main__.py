@@ -1,8 +1,10 @@
 import constants
 import random
 from game.casting.enemy import Enemy
+from game.casting.laser import Laser
 from game.scripting.control_enemies_action import ControlEnemiesAction
 from game.scripting.control_spacecraft_action import ControlSpacecraftAction
+from game.scripting.control_laser_action import ControlLaserAction
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 from game.directing.director import Director
@@ -24,20 +26,38 @@ def main():
 
     #create the space craft
     spacecraft = Spacecraft()
-    x = int(constants.SCREEN_WIDTH / 2)
-    y = int(constants.SCREEN_HEIGHT * 0.85)  
-    spacecraft.set_position(Point(x, y))
+    xs = int(constants.SCREEN_WIDTH / 2)
+    ys = int(constants.SCREEN_HEIGHT * 0.85)  
+    spacecraft.set_position(Point(xs, ys))
     spacecraft.set_text("#")
     spacecraft.set_font_size(constants.CELL_SIZE * 2)
 
     cast.add_actor("players", spacecraft)
 
-    #Create the enemies
+    #Create the BACKGROUND
+    for n in range(constants.DEFAULT_BACKGROUND_OBJECTS):
+        
+        text = random.choice(constants.BACKGROUND)
+        x = random.randint(1, constants.COLUMNS - 1)
+        y = random.randint(1, 50)
+        position = Point(x, y)
+        position = position.scale(constants.CELL_SIZE)
+        background = Enemy()
+        background.set_position(position)
+        background.set_velocity(constants.BACKGROUND_VELOCITY)
+        background.set_text(text)
+        background.set_color(constants.WHITE)
+        background.set_font_size(constants.CELL_SIZE)
+
+        cast.add_actor("background", background)
+
+    #Create the ENEMIES 
+
     for n in range(constants.DEFAULT_ENEMIES):
         
         text = random.choice(constants.ENEMIES)
         x = random.randint(1, constants.COLUMNS - 1)
-        y = random.randint(1, 15)
+        y = random.randint(1, 12)
         position = Point(x, y)
         position = position.scale(constants.CELL_SIZE)
         enemy = Enemy()
@@ -45,12 +65,19 @@ def main():
         enemy.set_velocity(constants.ENEMIES_VELOCITY)
         enemy.set_text(text)
         enemy.set_color(constants.RED)
+        enemy.set_font_size(constants.CELL_SIZE )
 
         cast.add_actor("enemies", enemy)
 
-        
-
+    #Create the LASER 
+    laser = Laser()
+    laser.set_position(Point(xs,ys))
+    laser.set_text("|")
     
+    laser.set_font_size(constants.CELL_SIZE)
+    cast.add_actor("laser", laser)
+
+   
     
 
     # start the game
@@ -61,6 +88,8 @@ def main():
     script = Script()
     script.add_action("output", DrawActorsAction(video_service))
     script.add_action("input", ControlSpacecraftAction(keyboard_service))
+    script.add_action("input", ControlLaserAction(keyboard_service))
+
     #script.add_action("input", ControlEnemiesAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
     #script.add_action("update", HandleCollisionsAction())
