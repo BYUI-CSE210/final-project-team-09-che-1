@@ -26,22 +26,23 @@ def main():
 
     #create the space craft
     spacecraft = Spacecraft()
-<<<<<<< HEAD
+    
+    
     xs = int(constants.SCREEN_WIDTH / 2)
     ys = int(constants.SCREEN_HEIGHT * 0.85)  
     spacecraft.set_position(Point(xs, ys))
-=======
+
     x = int(constants.SCREEN_WIDTH / 2)
     y = int(constants.SCREEN_HEIGHT * 0.85)  
     sc_position = Point(x, y)
     spacecraft.set_position(sc_position)
->>>>>>> 011a7bc8a646e9d69b268d804259611f0ce67154
+
     spacecraft.set_text("#")
     # spacecraft.set_font_size(constants.CELL_SIZE * 2)
 
     cast.add_actor("players", spacecraft)
 
-<<<<<<< HEAD
+
     #Create the BACKGROUND
     for n in range(constants.DEFAULT_BACKGROUND_OBJECTS):
         
@@ -63,10 +64,9 @@ def main():
 
     for n in range(constants.DEFAULT_ENEMIES):
         
-=======
     #Create the enemies
-    for n in range(constants.DEFAULT_ENEMIES):    
->>>>>>> 011a7bc8a646e9d69b268d804259611f0ce67154
+     for n in range(constants.DEFAULT_ENEMIES):    
+
         text = random.choice(constants.ENEMIES)
         x = random.randint(1, constants.COLUMNS - 1)
         y = random.randint(1, 12)
@@ -81,7 +81,7 @@ def main():
 
         cast.add_actor("enemies", enemy)
 
-<<<<<<< HEAD
+
     #Create the LASER 
     laser = Laser()
     laser.set_position(Point(xs,ys))
@@ -93,8 +93,7 @@ def main():
    
     
 
-=======
->>>>>>> 011a7bc8a646e9d69b268d804259611f0ce67154
+
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
