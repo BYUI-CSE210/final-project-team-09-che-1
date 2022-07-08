@@ -25,7 +25,7 @@ class DrawActorsAction(Action):
         spacecraft = cast.get_first_actor("players")
         background = cast.get_actors("background")
         enemy = cast.get_actors("enemies")
-        laser = cast.get_actors("laser")
+        laser = cast.get_actors("lasers")
 
 
         self._video_service.clear_buffer()

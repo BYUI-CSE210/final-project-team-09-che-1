@@ -1,7 +1,6 @@
 import constants
 import random
 from game.casting.enemy import Enemy
-from game.casting.laser import Laser
 from game.scripting.control_enemies_action import ControlEnemiesAction
 from game.scripting.control_spacecraft_action import ControlSpacecraftAction
 from game.scripting.control_laser_action import ControlLaserAction
@@ -26,22 +25,13 @@ def main():
 
     #create the space craft
     spacecraft = Spacecraft()
-    
-    
-    xs = int(constants.SCREEN_WIDTH / 2)
-    ys = int(constants.SCREEN_HEIGHT * 0.85)  
-    spacecraft.set_position(Point(xs, ys))
-
     x = int(constants.SCREEN_WIDTH / 2)
-    y = int(constants.SCREEN_HEIGHT * 0.85)  
-    sc_position = Point(x, y)
+    y = int((constants.SCREEN_HEIGHT / 2) + (constants.SCREEN_HEIGHT / 3))  
+    sc_position = Point(x, y).scale(constants.CELL_SIZE)
     spacecraft.set_position(sc_position)
-
     spacecraft.set_text("#")
-    # spacecraft.set_font_size(constants.CELL_SIZE * 2)
 
     cast.add_actor("players", spacecraft)
-
 
     #Create the BACKGROUND
     for n in range(constants.DEFAULT_BACKGROUND_OBJECTS):
@@ -55,7 +45,7 @@ def main():
         background.set_position(position)
         background.set_velocity(constants.BACKGROUND_VELOCITY)
         background.set_text(text)
-        background.set_color(constants.WHITE)
+        background.set_color(constants.WHITE_B)
         background.set_font_size(constants.CELL_SIZE)
 
         cast.add_actor("background", background)
@@ -77,16 +67,6 @@ def main():
 
         cast.add_actor("enemies", enemy)
 
-
-    #Create the LASER 
-    laser = Laser()
-    laser.set_position(Point(xs,ys))
-    laser.set_text("|")
-    
-    laser.set_font_size(constants.CELL_SIZE)
-    cast.add_actor("laser", laser)
-
-
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
@@ -106,10 +86,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 ##SPACE INVADERS
 
 ## CAST:
-# clase el jugador (navecita) //PABLO
 # clase el enemigo (aliens) enemigos se mueven hacia abajo y disparan lasers //PABLO
 # clase para laser (dependiendo si el enemigo /color diferente // jugador = rojo) //PABLO
 # # /// velocidad del laser del jugador hacia arriba / enemigo hacia abajo
@@ -119,11 +99,8 @@ if __name__ == "__main__":
 
 ## SCRIPTING:
 # clase y diseño de clase de colisiones de laser y enemigos / crear un game over collision //VALE
-# crear una interfaz - optional - ?
-# clase para el director (ejecutar las acciones) //REUSAR - AJUSTAR 
 
 ##SERVICES:
-# class Keyboard / Video //REUSAR
 # investigar clase sonido y reusar lo que se pueda
 # clase para sonido (explosion, enemigos, lasers)
 

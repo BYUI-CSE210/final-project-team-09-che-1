@@ -3,7 +3,6 @@ import constants
 from game.casting.spacecraft import Spacecraft
 from game.scripting.action import Action
 from game.shared.point import Point
-#from game.scripting.handle_colission_action import HandleCollisionsAction
 
 class ControlSpacecraftAction(Action):
     """

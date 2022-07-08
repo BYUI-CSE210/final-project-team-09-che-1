@@ -1,9 +1,7 @@
-import pyray
 import constants
 from game.casting.laser import Laser
 from game.scripting.action import Action
 from game.shared.point import Point
-#from game.scripting.handle_colission_action import HandleCollisionsAction
 
 class ControlLaserAction(Action):
     """
@@ -32,15 +30,11 @@ class ControlLaserAction(Action):
             script (Script): The script of Actions in the game.
         """
 
-        dx = 0
-        dy = 0
+        if self._keyboard_service.is_key_down("space"):
 
-        if self._keyboard_service.is_key_down("f"):
-            dy = -1
-        
-        
-        self._direction = Point(dx, dy)
-        self._direction = self._direction.scale(constants.CELL_SIZE)
-        laser = cast.get_first_actor("laser")
-        laser.set_velocity(self._direction) 
+            laser = Laser()
+            laser.spawn(cast)        
+            laser.set_velocity(Point(0, -1 * constants.CELL_SIZE))
+
+            cast.add_actor("lasers", laser)
     
