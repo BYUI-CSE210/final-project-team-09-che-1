@@ -7,20 +7,27 @@ from game.casting.cast import Cast
 
 
 class Enemy(Actor):
-    """An Enemie in this game 
-    
-    The responsability of the enemy is to attack the main player
+    """An Enemy in this game is represented a by a text character, it tries to
+    defeat the player by shooting lasers or touching the screen bottom
+
+    The responsability of the enemy is to attack the main player while
+    moving downwards
     
     Attributes:
-        
+        _color (color) = the color of the enemy
     """
     
     def __init__(self):
         """construct a new instance of an artifact"""   
+        
         super().__init__()
         self._color = constants.RED
     
-    def get_player(self):
+    def get_enemy(self):
+        """gets the enemy's position on the screen
+        
+        args: an instance of an enemy
+        """
 
         return self.get_position()
 

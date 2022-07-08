@@ -1,6 +1,7 @@
 import constants
 import random
 from game.casting.enemy import Enemy
+from game.casting.space import Space
 from game.scripting.control_enemies_action import ControlEnemiesAction
 from game.scripting.control_spacecraft_action import ControlSpacecraftAction
 from game.scripting.control_laser_action import ControlLaserAction
@@ -36,15 +37,13 @@ def main():
     #Create the BACKGROUND
     for n in range(constants.DEFAULT_BACKGROUND_OBJECTS):
         
-        text = random.choice(constants.BACKGROUND)
         x = random.randint(1, constants.COLUMNS - 1)
         y = random.randint(1, 50)
         position = Point(x, y)
         position = position.scale(constants.CELL_SIZE)
-        background = Enemy()
+        background = Space()
         background.set_position(position)
         background.set_velocity(constants.BACKGROUND_VELOCITY)
-        background.set_text(text)
         background.set_color(constants.WHITE_B)
         background.set_font_size(constants.CELL_SIZE)
 
@@ -79,7 +78,7 @@ def main():
 
     #script.add_action("input", ControlEnemiesAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
-    #script.add_action("update", HandleCollisionsAction())
+    # script.add_action("update", HandleCollisionsAction())
     
     director = Director(video_service)
     director.start_game(cast, script)
