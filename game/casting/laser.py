@@ -5,13 +5,10 @@ from game.shared.color import Color
 from game.casting.cast import Cast
 
 class Laser(Actor):
-    """An artifact in this game could be a rock or a gem
+    """A laser is something that the player shoots with the space bar key
     
-    The responsability of the artifact is to keep track of the 
-    score earned by the player
-    
-    Attributes:
-        score (int) = the score earned depending if the character is a gem or a rock
+    The responsability of the laser is to use collisions to defeat enemies
+    or to destroy the player
     """
     
     def __init__(self):
