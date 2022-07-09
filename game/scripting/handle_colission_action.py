@@ -105,5 +105,5 @@ class HandleCollisionsAction(Action):
                 message.set_text("Game Over!")
                 message.set_position(position)
                 message.set_color(constants.BLUE)
-                cast.add_actor("messages", message)
+                cast.add_actor("messages", message) 
 
