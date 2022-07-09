@@ -1,6 +1,7 @@
 import constants
 import random
 from game.casting.enemy import Enemy
+from game.casting.score import Score
 from game.casting.space import Space
 from game.scripting.control_enemies_action import ControlEnemiesAction
 from game.scripting.control_spacecraft_action import ControlSpacecraftAction
@@ -9,7 +10,6 @@ from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 from game.directing.director import Director
 from game.scripting.draw_actors_action import DrawActorsAction
-from game.scripting.draw_hud_action import DrawHUDAction
 from game.scripting.script import Script
 from game.scripting.move_actors_action import MoveActorsAction
 from game.scripting.handle_colission_action import HandleCollisionsAction
@@ -65,6 +65,16 @@ def main():
         enemy.set_font_size(constants.CELL_SIZE )
 
         cast.add_actor("enemies", enemy)
+
+    #HUD
+    #lives
+    lives = Lives()
+    cast.add_actor("lives", lives)
+
+    #score
+    score = Score()
+    score.set_position(Point(int((constants.SCREEN_WIDTH / 2) + (25 * constants.CELL_SIZE)) * constants.CELL_SIZE, 0 * constants.CELL_SIZE))
+    cast.add_actor("scores", score)
 
     # start the game
     keyboard_service = KeyboardService()
