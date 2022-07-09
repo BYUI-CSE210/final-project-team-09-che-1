@@ -34,7 +34,7 @@ class HandleCollisionsAction(Action):
 
 
     def handle_player_collition(self, cast):
-        """Modify lives and the score if the shots collides with the enemies 
+        """Modify lives and the score if the lasers collides with the enemies 
         or the enemies  collides with the player.
         
         Args:
@@ -42,33 +42,33 @@ class HandleCollisionsAction(Action):
         """
 
         #get player
-        shots = cast.get_actors("shots")
-        shot = shots[0]
-        player = cast.get_actors("player")
-        player1 = shots[0]
-        enemies = cast.get_actors("enemy")
+        lasers = cast.get_actors("lasers")
+        #laser = lasers[0]
+        #players = cast.get_first_actors("players")
+        #player1 = players[0]
+        enemies = cast.get_enemy("enemies")
         #red_enemies = enemies[0]
         #blue_enemies = enemies [1]
 
         #get the scores
-        scores = cast.get_actors("scores")
-        score_p1 = scores[0]
+        scores = cast.get_first_actors("scores")
+        #score_p1 = scores[0]
     
 
-        #if the shot collides with enemies
+        #if the laser collides with enemies
         for enemy in enemies:
-            if shot.get_position().equals(enemy.get_position()):
-                if enemy.get_text() == "*":
+            if lasers.get_position().equals(enemy.get_position()):
+                #if enemy.get_text() == "@":
                 #add points to the player
-                    score_p1.add_points(100)
-                if enemy.get_text() == "O":
-                    score_p1.add_points(200)
+                    scores.add_points(100)
+               # if enemy.get_text() == "O":
+                #    score_p1.add_points(200)
               
 
         #if the player collides with enemies
-        for enemy in enemies:
-            if player.get_position().equals(enemy.get_position()):
-                self._is_game_over = True
+        #for enemy in enemies:
+         #   if players.get_position().equals(enemy.get_position()):
+          #      self._is_game_over = True
                 #add points to the other player 
    
 
@@ -81,8 +81,8 @@ class HandleCollisionsAction(Action):
 
         if self._is_game_over:
             #get the player
-            player = cast.get_actors("players")
-            player1 = player[0]
+            #players = cast.get_actors("players")
+            #player1 = players[0]
             
 
             #get the lives
