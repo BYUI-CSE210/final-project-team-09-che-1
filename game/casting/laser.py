@@ -1,36 +1,34 @@
 import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
-from game.shared.color import Color
-from game.casting.cast import Cast
 
 class Laser(Actor):
-    """An artifact in this game could be a rock or a gem
-    
-    The responsability of the artifact is to keep track of the 
-    score earned by the player
-    
-    Attributes:
-        score (int) = the score earned depending if the character is a gem or a rock
-    """
-    
-    def __init__(self):
-        """construct a new instance of an artifact"""   
-        super().__init__()
-        
-    
-    def get_player(self):
-        """Return the Spacecraft"""
-        pass
-        #Creating the spacecraft
-     #   player = Actor()
-     #   player.set_color(constants.GREEN)
-       # player.set_position(position)
-      #  player.set_font_size(constants.FONT_SIZE)
-      #  player.set_text("#")
-        #cast = Cast()
-       # cast.add_actor("player1", player)
+	"""A laser is something that the player shoots using the 
+	space bar key
+	
+	The responsabilit of the laser is to use colission to defeat enemies
+	or destroy the player
+	"""
 
-    
-    
-   
+	def __init__(self):
+		"""constructs a new instance of a laser"""
+
+		super().__init__()
+		self._color = constants.GREEN
+	
+	def spawn(self, cast):
+		"""spawns the laser in front of the player"""
+
+		spacecraft = cast.get_first_actor("players")
+		player_pos = spacecraft.get_position()
+		
+		position = player_pos.add(Point(0, 1 * constants.CELL_SIZE))
+		self.set_position(position)
+		self.set_text("|")
+	
+	def move_next(self):
+		"""makes the laser vanish istead of wrapping it"""
+
+		x = (self._position.get_x() + self._velocity.get_x())
+		y = (self._position.get_y() + self._velocity.get_y()) 
+		self._position = Point(x, y)

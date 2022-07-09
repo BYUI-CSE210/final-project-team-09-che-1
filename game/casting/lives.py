@@ -15,9 +15,12 @@ class Lives(Actor):
 
         super().__init__()
         self._lives = DEFAULT_LIVES
+        self.get_lives()
     
     def get_lives(self):
         """gets the amount of lives from the player"""
+
+        self.set_text(f"Lives: {self._lives}")
 
         return self._lives
     
@@ -26,7 +29,9 @@ class Lives(Actor):
 
         if self._lives > 0:
             self._lives -= 1
-    
+
+        self.set_text(f"Lives {self._lives}")
+
     def reset_lives(self):
         """resets the lives to the default value"""
 

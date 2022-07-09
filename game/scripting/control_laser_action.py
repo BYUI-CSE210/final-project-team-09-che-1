@@ -1,17 +1,13 @@
-import pyray
 import constants
-from game.casting.spacecraft import Spacecraft
+from game.casting.laser import Laser
 from game.scripting.action import Action
 from game.shared.point import Point
 
-class ControlSpacecraftAction(Action):
+class ControlLaserAction(Action):
     """
     An input action that controls the spacecraft's movement.
     
     The responsibility of ControlActorsAction is to get the direction and move the spacecraft.
-
-
-
     Attributes:
         _keyboard_service (KeyboardService): An instance of KeyboardService.
         _direction (Point): a point to direct the spacecraft
@@ -34,16 +30,11 @@ class ControlSpacecraftAction(Action):
             script (Script): The script of Actions in the game.
         """
 
-        dx = 0
-        dy = 0
+        if self._keyboard_service.is_key_down("space"):
 
-        if self._keyboard_service.is_key_down("a"):
-            dx = -1
-        
-        if self._keyboard_service.is_key_down("d"):
-            dx = 1
-        
-        self._direction = Point(dx, dy)
-        self._direction = self._direction.scale(constants.CELL_SIZE)
-        spacecraft = cast.get_first_actor("players")
-        spacecraft.set_velocity(self._direction) 
+            laser = Laser()
+            laser.spawn(cast)        
+            laser.set_velocity(Point(0, -1 * constants.CELL_SIZE))
+
+            cast.add_actor("lasers", laser)
+    

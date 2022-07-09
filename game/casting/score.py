@@ -13,12 +13,11 @@ class Score(Actor):
         _points (int): The points earned in the game.
     """
 
-    def __init__(self, player):
+    def __init__(self):
         """creates new instance of the actor score"""
 
         super().__init__()
         self._points = 0
-        self._player = player
         self._is_game_over = False
         self.add_points(0)
         
@@ -32,7 +31,7 @@ class Score(Actor):
         if not self._is_game_over:
             self._points += points
         
-        self.set_text(f"{self._player} Score: {self._points}")
+        self.set_text(f"Score: {self._points}")
     
     def set_game_over(self, game_over):
         """Sets the game over value to true
