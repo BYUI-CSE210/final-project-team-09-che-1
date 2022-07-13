@@ -1,5 +1,5 @@
 # Space Invaders
- Space Invaders is a game where the spaceship (the player) is attacked by enemies who throw objects to destroy it. The player's mission will be to defend himself by shooting lasers at the enemies to avoid losing lives. Also, for each enemy shot that the ship destroys, the player will receive points.
+ Space Invaders is a game where the spaceship (the player) is attacked by enemies who shoot lasers to destroy it. The player's mission will be to defend himself by shooting lasers at the enemies to avoid losing lives. Also, for each enemy that the spaceship shoots, it earns points
 
 ## Rules
 Space Invaders is played according to the following rules:
