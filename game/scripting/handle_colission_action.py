@@ -58,7 +58,7 @@ class HandleCollisionsAction(Action):
                 #if the laser collides with enemies
                 for enemy in enemies:
                     e_position = enemy.get_position()
-                    # if l_position.equals((enemy.get_enemy()).add(Point(constants.CELL_SIZE, constants.CELL_SIZE))):
+    
                     if e_position.get_x() <= l_position.get_x() and l_position.get_x() <= (e_position.get_x() + constants.CELL_SIZE):
                         if e_position.get_y() <= l_position.get_y() and l_position.get_y() <= (e_position.get_y() + constants.CELL_SIZE):
                             #add points to the player
