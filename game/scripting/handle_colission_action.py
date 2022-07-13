@@ -29,47 +29,46 @@ class HandleCollisionsAction(Action):
 
         if not self._is_game_over:
        
-            self.handle_player_collition(cast)
+            self.handle_laser_collition(cast)
             self._handle_game_over(cast)
 
 
-    def handle_player_collition(self, cast):
+    def handle_laser_collition(self, cast):
         """Modify lives and the score if the shots collides with the enemies 
-        or the enemies  collides with the player.
+        or the enemies collides with the player.
         
         Args:
             cast (Cast): The cast of Actors in the game.
         """
 
-        #get player
-        shots = cast.get_actors("shots")
-        shot = shots[0]
-        player = cast.get_actors("player")
-        player1 = shots[0]
-        enemies = cast.get_actors("enemy")
-        #red_enemies = enemies[0]
-        #blue_enemies = enemies [1]
+        #get lasers - player - enemies
+        lasers = cast.get_actors("lasers")
+        player = cast.get_first_actor("players")
+        
+        #get the score
+        score = cast.get_first_actor("scores")
 
-        #get the scores
-        scores = cast.get_actors("scores")
-        score_p1 = scores[0]
-    
+        if bool(lasers):
+            for laser in lasers:
+                l_position = laser.get_position()
+                enemies = cast.get_actors("enemies")
+                
+                #if the laser collides with enemies
+                for enemy in enemies:
+                    e_position = enemy.get_position()
+                    # if l_position.equals((enemy.get_enemy()).add(Point(constants.CELL_SIZE, constants.CELL_SIZE))):
+                    if e_position.get_x() <= l_position.get_x() and l_position.get_x() <= (e_position.get_x() + constants.CELL_SIZE):
+                        if e_position.get_y() <= l_position.get_y() and l_position.get_y() <= (e_position.get_y() + constants.CELL_SIZE):
+                            #add points to the player
+                            score.add_points(100)
+                            enemy.vanish(cast)
 
-        #if the shot collides with enemies
-        for enemy in enemies:
-            if shot.get_position().equals(enemy.get_position()):
-                if enemy.get_text() == "*":
-                #add points to the player
-                    score_p1.add_points(100)
-                if enemy.get_text() == "O":
-                    score_p1.add_points(200)
-              
-
-        #if the player collides with enemies
-        for enemy in enemies:
-            if player.get_position().equals(enemy.get_position()):
-                self._is_game_over = True
-                #add points to the other player 
+                
+            # #if the player collides with enemies
+            # for enemy in enemies:
+            #     if player.get_position().equals(enemy.get_position()):
+            #         self._is_game_over = True
+            #         #add points to the other player 
    
 
     def _handle_game_over(self, cast):
