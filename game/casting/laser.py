@@ -1,4 +1,5 @@
 import constants
+import random
 from game.casting.actor import Actor
 from game.shared.point import Point
 
@@ -29,6 +30,7 @@ class Laser(Actor):
 		self.set_position(position)
 		self.set_text("|")
 	
+
 	def move_next(self):
 		"""makes the laser vanish istead of wrapping it"""
 
