@@ -52,7 +52,7 @@ class HandleCollisionsAction(Action):
 
         #get the scores
         scores = cast.get_first_actors("scores")
-        #score_p1 = scores[0]
+        #score_p1 = scores[0] 
     
 
         #if the laser collides with enemies
