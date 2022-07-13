@@ -38,7 +38,7 @@ class EnemyLaserAction(Action):
 
             laser = Laser()
             laser.enemy_laser(cast)
-            laser.set_velocity(Point(0, 1 * constants.CELL_SIZE))
+            laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
 
             cast.add_actor("enemy_laser", laser)
 

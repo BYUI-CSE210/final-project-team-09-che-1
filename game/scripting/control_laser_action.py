@@ -34,7 +34,7 @@ class ControlLaserAction(Action):
 
             laser = Laser()
             laser.spawn(cast)        
-            laser.set_velocity(Point(0, -1 * constants.CELL_SIZE))
+            laser.set_velocity(constants.LASER_VELOCITY)
 
             cast.add_actor("lasers", laser)
     
