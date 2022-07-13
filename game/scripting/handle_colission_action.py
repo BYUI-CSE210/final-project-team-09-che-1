@@ -65,6 +65,8 @@ class HandleCollisionsAction(Action):
                             score.add_points(100)
                             enemy.vanish(cast)
                             laser.reset(cast, "player")
+                        
+                        break
 
         if bool(enemy_lasers):
             for laser in enemy_lasers:        
@@ -80,7 +82,8 @@ class HandleCollisionsAction(Action):
                         player.reset(cast)
                         for laser in enemy_lasers:
                             laser.reset(cast, "enemy")
-
+                        
+                        break
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message if the game is over or the player lose all lives. 
