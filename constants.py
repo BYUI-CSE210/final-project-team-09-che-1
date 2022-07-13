@@ -36,4 +36,4 @@ BACKGROUND = ["*", "o",]
 BACKGROUND_VELOCITY = Point(0, 3)
 
 #LASER
-LASER_VELOCITY = Point(0, -3)
+LASER_VELOCITY = Point(0, -1)

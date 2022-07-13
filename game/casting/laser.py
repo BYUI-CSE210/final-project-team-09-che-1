@@ -9,6 +9,9 @@ class Laser(Actor):
 	
 	The responsabilit of the laser is to use colission to defeat enemies
 	or destroy the player
+	
+	Attributes:
+		_color (color): color to identidy the laser (green) 
 	"""
 
 	def __init__(self):

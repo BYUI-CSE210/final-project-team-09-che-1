@@ -30,6 +30,16 @@ class Enemy(Actor):
         """
 
         return self.get_position()
+    
+    def vanish(self, cast):
+        """vanishes the enemy from the screen and the cast
+        
+        args:
+            self: an instance of an enemy
+            cast: the cast containing the actors
+        """
+
+        cast.remove_actor("enemies", self)
 
 
 
