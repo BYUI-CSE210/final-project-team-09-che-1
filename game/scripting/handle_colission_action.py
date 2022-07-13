@@ -80,8 +80,8 @@ class HandleCollisionsAction(Action):
 
         if self._is_game_over:
             #get the player
-            player = cast.get_actors("players")
-            player1 = player[0]
+            #players = cast.get_actors("players")
+            #player1 = players[0]
             
 
             #get the lives
@@ -104,5 +104,5 @@ class HandleCollisionsAction(Action):
                 message.set_text("Game Over!")
                 message.set_position(position)
                 message.set_color(constants.BLUE)
-                cast.add_actor("messages", message)
+                cast.add_actor("messages", message) 
 
