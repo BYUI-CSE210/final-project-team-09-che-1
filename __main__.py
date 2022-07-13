@@ -86,7 +86,7 @@ def main():
     script.add_action("input", ControlSpacecraftAction(keyboard_service))
     script.add_action("input", ControlLaserAction(keyboard_service))
 
-    #script.add_action("input", ControlEnemiesAction(keyboard_service))
+    script.add_action("update", EnemyLaserAction())
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
     
@@ -95,17 +95,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-##SPACE INVADERS
-
-## CAST:
-# clase el enemigo (aliens) enemigos se mueven hacia abajo y disparan lasers //PABLO
-# # /// velocidad del laser del jugador hacia arriba / enemigo hacia abajo
-# clase para el score (si enemigo muere = 100 puntos / enemigo especial = 200 puntos) //PABLO
-#       - debe llamarse en handlecollisions (metodo de colision de laser con enemigo)
-
-## SCRIPTING:
-# clase y diseño de clase de colisiones de laser y enemigos / crear un game over collision //VALE
-
-## Extras (si hay tiempo)
-# corazon aparece random en la pantalla y si laser golpea gana una vida

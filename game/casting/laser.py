@@ -19,6 +19,7 @@ class Laser(Actor):
 
 		super().__init__()
 		self._color = constants.GREEN
+		self._is_game_over = False
 	
 	def spawn(self, cast):
 		"""spawns the laser in front of the player"""
@@ -29,6 +30,17 @@ class Laser(Actor):
 		position = player_pos.add(Point(0, 1 * constants.CELL_SIZE))
 		self.set_position(position)
 		self.set_text("|")
+	
+	def enemy_laser(self, cast):
+		"""spawns enemy laser"""
+		enemies = cast.get_actors("enemies")
+
+		if bool(enemies):		
+			enemy = random.choice(enemies)
+			enemies_pos = enemy.get_position()
+			position = enemies_pos.add(Point(0, 1 * constants.CELL_SIZE))
+			self.set_position(position)
+			self.set_text("|")
 
 	def move_next(self):
 		"""makes the laser vanish istead of wrapping it"""
@@ -36,3 +48,8 @@ class Laser(Actor):
 		x = (self._position.get_x() + self._velocity.get_x())
 		y = (self._position.get_y() + self._velocity.get_y()) 
 		self._position = Point(x, y)
+
+	def set_game_over(self):
+		"""sets game over true"""
+
+		self._is_game_over = True
