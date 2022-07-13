@@ -1,6 +1,5 @@
 import constants
 from game.scripting.action import Action
-from game.shared.point import Point
 from game.casting.laser import Laser
 
 class EnemyLaserAction(Action):
@@ -36,11 +35,13 @@ class EnemyLaserAction(Action):
             #reset the counter
             self._counter = 0
 
-            laser = Laser()
-            laser.enemy_laser(cast)
-            laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
+            for i in range(9):    
+                laser = Laser()
+                laser.enemy_laser(cast)
+                laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
+                laser.set_color(constants.YELLOW)
 
-            cast.add_actor("enemy_laser", laser)
+                cast.add_actor("enemy_laser", laser)
 
 
 

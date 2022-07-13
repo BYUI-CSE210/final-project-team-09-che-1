@@ -23,6 +23,7 @@ WHITE = Color(255, 255, 255)
 RED = Color(255, 0, 0)
 BLUE = Color(0, 0, 255)
 GREEN = Color(0, 255, 0)
+YELLOW = Color(255, 255, 0)
 
 #ENEMIES
 DEFAULT_ENEMIES = 40

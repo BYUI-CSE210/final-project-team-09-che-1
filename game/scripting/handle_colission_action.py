@@ -28,9 +28,9 @@ class HandleCollisionsAction(Action):
         """
 
         if not self._is_game_over:
-       
             self.handle_laser_collition(cast)
             self._handle_game_over(cast)
+            
 
 
     def handle_laser_collition(self, cast):
@@ -43,7 +43,9 @@ class HandleCollisionsAction(Action):
 
         #get lasers - player - enemies
         lasers = cast.get_actors("lasers")
+        enemy_lasers = cast.get_actors("enemy_laser")
         player = cast.get_first_actor("players")
+        lives = cast.get_first_actor("lives")
         
         #get the score
         score = cast.get_first_actor("scores")
@@ -63,46 +65,55 @@ class HandleCollisionsAction(Action):
                             score.add_points(100)
                             enemy.vanish(cast)
 
-                
-            # #if the player collides with enemies
-            # for enemy in enemies:
-            #     if player.get_position().equals(enemy.get_position()):
-            #         self._is_game_over = True
-            #         #add points to the other player 
-   
+        if bool(enemy_lasers):
+            for laser in enemy_lasers:        
+                el_position = laser.get_position()
+                p_position = player.get_position()
+
+                #if enemy laser collides with player
+                if p_position.get_x() <= el_position.get_x() and el_position.get_x() <= (p_position.get_x() + constants.CELL_SIZE):
+                    if p_position.get_y() <= el_position.get_y() and el_position.get_y() <= (p_position.get_y() + constants.CELL_SIZE):
+                        #lose one life
+                        lives.lose_life()
+                        player.reset(cast)
+
 
     def _handle_game_over(self, cast):
-        """Shows the 'game over' and 'Try Again' message if the game is over or the player lose lives. 
+        """Shows the 'game over' message if the game is over or the player lose all lives. 
         
         Args:
             cast (Cast): The cast of Actors in the game.
         """
 
-        if self._is_game_over:
-            #get the player
-            #players = cast.get_actors("players")
-            #player1 = players[0]
-            
+        #get the lives
+        lives = cast.get_first_actor("lives")
+        live = lives.get_lives()
+        #enemies
+        enemies = cast.get_actors("enemies")
 
-            #get the lives
-            lives = cast.get_actors("lives")
-            live = lives[0].get_lives()
+        if live == 0:
+            self._is_game_over = True
 
-            x = int(constants.MAX_X / 2)
-            y = int(constants.MAX_Y / 2)
+            x = int(constants.SCREEN_WIDTH / 2)
+            y = int(constants.SCREEN_HEIGHT / 2)
             position = Point(x, y)
+            
+            message = Actor()
+            message.set_text("Game Over!")
+            message.set_position(position)
+            message.set_color(constants.BLUE)
+            cast.add_actor("messages", message) 
 
-            if live > 0:
-                message = Actor()
-                message.set_text("Try Again")
-                message.set_position(position)
-                message.set_color(constants.BLUE)
-                cast.add_actor("messages", message)
-   
-            else: 
-                message = Actor()
-                message.set_text("Game Over!")
-                message.set_position(position)
-                message.set_color(constants.BLUE)
-                cast.add_actor("messages", message) 
+        if not bool(enemies):
+            
+            self._is_game_over = True
 
+            x = int(constants.SCREEN_WIDTH / 2)
+            y = int(constants.SCREEN_HEIGHT / 2)
+            position = Point(x, y)
+            
+            message = Actor()
+            message.set_text("Congrats, You Win!")
+            message.set_position(position)
+            message.set_color(constants.BLUE)
+            cast.add_actor("messages", message) 

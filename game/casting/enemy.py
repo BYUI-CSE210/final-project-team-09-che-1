@@ -1,9 +1,5 @@
 import constants
-import random
 from game.casting.actor import Actor
-from game.shared.point import Point
-from game.shared.color import Color
-from game.casting.cast import Cast
 
 
 class Enemy(Actor):
@@ -22,14 +18,6 @@ class Enemy(Actor):
         
         super().__init__()
         self._color = constants.RED
-    
-    def get_enemy(self):
-        """gets the enemy's position on the screen
-        
-        args: an instance of an enemy
-        """
-
-        return self.get_position()
     
     def vanish(self, cast):
         """vanishes the enemy from the screen and the cast

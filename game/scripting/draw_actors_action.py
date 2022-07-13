@@ -26,8 +26,10 @@ class DrawActorsAction(Action):
         background = cast.get_actors("background")
         enemy = cast.get_actors("enemies")
         laser = cast.get_actors("lasers")
+        enemy_lasers = cast.get_actors("enemy_laser")
         score = cast.get_first_actor("scores")
         lives = cast.get_first_actor("lives")
+        messages = cast.get_actors("messages")
 
 
         self._video_service.clear_buffer()
@@ -35,6 +37,8 @@ class DrawActorsAction(Action):
         self._video_service.draw_actors(background)
         self._video_service.draw_actors(enemy)
         self._video_service.draw_actors(laser)
+        self._video_service.draw_actors(enemy_lasers)
         self._video_service.draw_actor(score)
         self._video_service.draw_actor(lives)
+        self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()
