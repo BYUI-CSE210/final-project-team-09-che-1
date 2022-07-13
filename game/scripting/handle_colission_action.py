@@ -35,7 +35,7 @@ class HandleCollisionsAction(Action):
 
     def handle_laser_collition(self, cast):
         """Modify lives and the score if the shots collides with the enemies 
-        or the enemies collides with the player.
+        or the enemy's lasers collides with the player.
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -45,7 +45,7 @@ class HandleCollisionsAction(Action):
         lasers = cast.get_actors("lasers")
         enemy_lasers = cast.get_actors("enemy_laser")
         player = cast.get_first_actor("players")
-        lives = cast.get_first_actor("lives")
+        
         
         #get the score
         score = cast.get_first_actor("scores")
@@ -64,6 +64,7 @@ class HandleCollisionsAction(Action):
                             #add points to the player
                             score.add_points(100)
                             enemy.vanish(cast)
+                            laser.reset(cast, "player")
 
         if bool(enemy_lasers):
             for laser in enemy_lasers:        
@@ -74,8 +75,11 @@ class HandleCollisionsAction(Action):
                 if p_position.get_x() <= el_position.get_x() and el_position.get_x() <= (p_position.get_x() + constants.CELL_SIZE):
                     if p_position.get_y() <= el_position.get_y() and el_position.get_y() <= (p_position.get_y() + constants.CELL_SIZE):
                         #lose one life
+                        lives = cast.get_first_actor("lives")
                         lives.lose_life()
                         player.reset(cast)
+                        for laser in enemy_lasers:
+                            laser.reset(cast, "enemy")
 
 
     def _handle_game_over(self, cast):
@@ -105,7 +109,6 @@ class HandleCollisionsAction(Action):
             cast.add_actor("messages", message) 
 
         if not bool(enemies):
-            
             self._is_game_over = True
 
             x = int(constants.SCREEN_WIDTH / 2)

@@ -9,6 +9,7 @@ class Spacecraft(Actor):
     the screen avoinding lasers to survive
     
     Attributes:
+        _color (color): blue color to identify the spaceship
     """
     
     def __init__(self):

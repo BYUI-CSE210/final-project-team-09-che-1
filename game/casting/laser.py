@@ -12,6 +12,7 @@ class Laser(Actor):
 	
 	Attributes:
 		_color (color): color to identidy the laser (green) 
+		_text (string): a string to identify the laser |
 	"""
 
 	def __init__(self):
@@ -19,28 +20,32 @@ class Laser(Actor):
 
 		super().__init__()
 		self._color = constants.GREEN
-		self._is_game_over = False
+		self._text = "|"
 	
 	def spawn(self, cast):
-		"""spawns the laser in front of the player"""
+		"""spawns the laser in front of the player
+		
+		args: 
+			cast: the cast of the game containing the actors
+		"""
 
 		spacecraft = cast.get_first_actor("players")
 		player_pos = spacecraft.get_position()
 		
 		position = player_pos.add(Point(0, 1 * constants.CELL_SIZE))
 		self.set_position(position)
-		self.set_text("|")
 	
-	def enemy_laser(self, cast):
-		"""spawns enemy laser"""
-		enemies = cast.get_actors("enemies")
+	def enemy_laser(self, enemy):
+		"""spawns enemy laser
+		
+		args: 
+			enemy: the enemy that will fire the laser
+		"""
 
-		if bool(enemies):		
-			enemy = random.choice(enemies)
-			enemies_pos = enemy.get_position()
-			position = enemies_pos.add(Point(0, 1 * constants.CELL_SIZE))
-			self.set_position(position)
-			self.set_text("|")
+		enemy_pos = enemy.get_position()
+		position = enemy_pos.add(Point(0, 1 * constants.CELL_SIZE))
+		self.set_position(position)
+		
 
 	def move_next(self):
 		"""makes the laser vanish istead of wrapping it"""
@@ -49,7 +54,15 @@ class Laser(Actor):
 		y = (self._position.get_y() + self._velocity.get_y()) 
 		self._position = Point(x, y)
 
-	def set_game_over(self):
-		"""sets game over true"""
+	def reset(self, cast, type):
+		"""removes the laser from the game to give the 
+		player some time to recover
+		
+		args: 
+			cast: the cast of the game
+		"""
 
-		self._is_game_over = True
+		if type == "enemy":
+			cast.remove_actor("enemy_laser", self)
+		elif type == "player":
+			cast.remove_actor("lasers", self)
