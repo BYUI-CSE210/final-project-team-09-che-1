@@ -29,7 +29,6 @@ class Laser(Actor):
 		position = player_pos.add(Point(0, 1 * constants.CELL_SIZE))
 		self.set_position(position)
 		self.set_text("|")
-	
 
 	def move_next(self):
 		"""makes the laser vanish istead of wrapping it"""
