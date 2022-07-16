@@ -14,7 +14,7 @@ class Enemy(Actor):
     """
     
     def __init__(self):
-        """construct a new instance of an artifact"""   
+        """construct a new instance of an enemy"""  
         
         super().__init__()
         self._color = constants.RED

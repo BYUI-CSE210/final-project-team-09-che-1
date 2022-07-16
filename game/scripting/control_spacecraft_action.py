@@ -10,8 +10,6 @@ class ControlSpacecraftAction(Action):
     
     The responsibility of ControlActorsAction is to get the direction and move the spacecraft.
 
-
-
     Attributes:
         _keyboard_service (KeyboardService): An instance of KeyboardService.
         _direction (Point): a point to direct the spacecraft

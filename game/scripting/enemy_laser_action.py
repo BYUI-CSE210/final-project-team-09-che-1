@@ -1,3 +1,4 @@
+import random
 import constants
 from game.scripting.action import Action
 from game.casting.laser import Laser
@@ -30,18 +31,31 @@ class EnemyLaserAction(Action):
         """
 
         self._counter += 1
-
         if self._counter >= (constants.FRAME_RATE * 2):
             #reset the counter
             self._counter = 0
 
-            for i in range(9):    
-                laser = Laser()
-                laser.enemy_laser(cast)
-                laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
-                laser.set_color(constants.YELLOW)
+            enemies = cast.get_actors("enemies")
+            e_lasers = 9
 
-                cast.add_actor("enemy_laser", laser)
+            if len(enemies) >= e_lasers:
+                firing_enemies = random.sample(enemies, e_lasers)
+                for enemy in firing_enemies:    
+                    laser = Laser()
+                    laser.enemy_laser(enemy)
+                    laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
+                    laser.set_color(constants.YELLOW)
 
+                    cast.add_actor("enemy_laser", laser)
+            else:
+                e_lasers = len(enemies)
+                firing_enemies = random.sample(enemies, e_lasers)
+                for enemy in firing_enemies:
+                    laser = Laser()
+                    laser.enemy_laser(enemy)
+                    laser.set_velocity(constants.ENEMY_LASER_VELOCITY)
+                    laser.set_color(constants.YELLOW)
+
+                    cast.add_actor("enemy_laser", laser)
 
 
