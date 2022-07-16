@@ -51,7 +51,7 @@ def main():
      
     #Create the enemies
     for n in range(constants.DEFAULT_ENEMIES):    
-
+  
         text = random.choice(constants.ENEMIES)
         x = random.randint(1, constants.COLUMNS - 1)
         y = random.randint(1, 12)
